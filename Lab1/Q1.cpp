@@ -8,35 +8,27 @@ Also, print out the balance of account2 to ensure it hasn't been affected by the
 #include <iostream>
 using namespace std;
 
-class BankAccount
-{
+class BankAccount{
 private:
     double accBalance;
 
 public:
-    BankAccount() : accBalance(0.0) { cout << "New account created with default constructor." << endl; }
+    BankAccount():accBalance(0.0) { cout << "New account created with default constructor." << endl; }
     BankAccount(double b) : accBalance(b) { cout << "New account created with parameterized constructor." << endl; }
-    BankAccount(const BankAccount &ba)
-    {
+    BankAccount(const BankAccount &ba){
         accBalance = ba.accBalance;
-        cout << "New account created with copy constructor." << endl;
-    }
+        cout << "New account created with copy constructor." << endl;}
 
-    void deduct(double am)
-    {
-        if (am <= accBalance)
-        {
+    void deduct(double am){
+        if (am <= accBalance){
             accBalance = accBalance - am;
             cout << "An ammount of $" << am << " has been deducted.\nNew balance is: " << accBalance << endl;
-        }
-        else
-        {
+        }else{
             cout << "Insufficient Balance." << endl;
         }
     }
 
-    void printBalance()
-    {
+    void printBalance(){
         cout << "Balance is: " << accBalance << endl;
     }
 };
