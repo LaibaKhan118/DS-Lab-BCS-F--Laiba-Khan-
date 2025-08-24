@@ -8,16 +8,13 @@ Afterward, create an instance of the "Exam" class, generate a shallow copy, and 
 #include <cstring>
 using namespace std;
 
-class Exam
-{
+class Exam{
 private:
     char *name;
     char *date;
-    float score; // Assuming we are storing total final score
-
+    float score; 
 public:
-    Exam(const char *n, const char *d, float s)
-    {
+    Exam(const char *n, const char *d, float s){
         name = new char[strlen(n) + 1];
         strcpy(name, n);
 
@@ -27,36 +24,29 @@ public:
         score = s;
     }
 
-    ~Exam()
-    {
+    ~Exam(){
         delete[] name;
         delete[] date;
     }
 
-    void setName(const char *n)
-    {
+    void setName(const char *n){
         delete[] name;
         name = new char[strlen(n) + 1];
         strcpy(name, n);
     }
-    void setDate(const char *d)
-    {
+    void setDate(const char *d){
         delete[] date;
         date = new char[strlen(d) + 1];
         strcpy(date, d);
     }
     void setScore(float s) { score = s; }
 
-    void display() const
-    {
-        cout << "Student: " << name << endl
-             << "  Date: " << date << endl
-             << "  Score: " << score << endl;
+    void display() const{
+        cout << "Student: " << name << endl << "  Date: " << date << endl << "  Score: " << score << endl;
     }
 };
 
-int main()
-{
+int main(){
     Exam e1("Laiba", "23-08-25", 70);
     e1.display();
     cout << endl;
@@ -71,6 +61,6 @@ int main()
     cout << "\ne2:" << endl;
     e2.display();
 
-    cout << "Due to shallow copy, the pointer copied the address instead of the value.\nSo, when we changed the value of a property of the second object, it changed the value that was supposed to be the first object's." << endl;
+    cout << "Due to shallow copy, the pointer copied the address instead of the value.\nSo, when we changed the value of a member of the second object, it changed the value that was supposed to be the first object's." << endl;
     return 0;
 }
