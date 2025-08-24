@@ -5,34 +5,27 @@ Demonstrate the behavior of both shallow and deep copy using test cases.*/
 #include <iostream>
 using namespace std;
 
-class Box
-{
+class Box{
 private:
     int *a;
-
 public:
-    Box()
-    {
+    Box(){
         a = new int;
         *a = 0;
         cout << "Default Constructor Executed!" << endl;
     }
-    Box(int s)
-    {
+    Box(int s){
         a = new int;
         *a = s;
         cout << "Parameterized Constructor Executed!" << endl;
     }
-    Box(const Box &b)
-    {
+    Box(const Box &b){
         a = new int;
         *a = *(b.a);
         cout << "Copy Constructor Executed!" << endl;
     }
-    Box &operator=(const Box &b)
-    {
-        if (this != &b)
-        {
+    Box &operator=(const Box &b){
+        if (this!=&b){
             delete a;
             a = new int;
             *a = *(b.a);
@@ -40,8 +33,7 @@ public:
         cout << "Assignment Operator Executed!" << endl;
         return *this;
     }
-    ~Box()
-    {
+    ~Box(){
         delete a;
     }
 
@@ -49,10 +41,9 @@ public:
     int getSide() { return *a; }
 };
 
-int main()
-{
+int main(){
     cout << "Copy Constructor:" << endl;
-    Box b1(100);
+    Box b1(100); 
     Box b2 = b1;
     b2.setSide(250);
 
