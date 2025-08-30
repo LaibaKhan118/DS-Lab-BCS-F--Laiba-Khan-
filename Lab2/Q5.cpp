@@ -8,8 +8,15 @@ private:
 
 public:
     Matrix(int r, int c){
-        row = r;
-        col = c;
+        if(r < 1) { 
+            cout << "Rows must be at least 1. Assigning 1 to the rows." << endl; 
+            row = 1; }
+        else {row = r;}
+        if(c < 1) { 
+            cout << "Columns must be at least 1. Assigning 1 to the rows." << endl; 
+            col = 1; }
+        else {col = c;}
+        
         matrix = new int *[r];
         for (int i = 0; i < r; i++){
             matrix[i] = new int[c]{};
