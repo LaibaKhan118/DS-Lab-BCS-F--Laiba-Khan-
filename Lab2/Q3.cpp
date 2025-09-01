@@ -30,5 +30,10 @@ int main(){
         int avg = sum / courses[i];
         cout << avg << endl;
     }
+    for(int i=0; i <students; i++){
+        delete[] marks[i];
+    }
+    delete[] marks;
+    delete[] courses;
     return 0;
 }
