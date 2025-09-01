@@ -20,9 +20,10 @@ int main(){
             cin >> marks[i][j];
         }
     }
-    int sum = 0;
+    
     cout << "Average Marks: " << endl;
     for (int i = 0; i < students; i++){
+        int sum = 0;
         cout << "Student " << i << ": ";
         for (int j = 0; j < courses[i]; j++){
             sum += marks[i][j];
