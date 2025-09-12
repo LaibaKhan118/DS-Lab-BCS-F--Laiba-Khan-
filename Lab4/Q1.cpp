@@ -31,6 +31,6 @@ int main() {
         cout << "number not found." << endl;
     }
     
-
+    delete[] arr;
     return 0;
 }
