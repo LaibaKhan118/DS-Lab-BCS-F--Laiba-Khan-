@@ -24,7 +24,7 @@ int main() {
     
     cout << "Sorted Array:" << endl;
     for(int i=0; i < n; i++) {
-        string val = (i==0) ? "CEO" : (i==1)? "CTO" : (i==2) ? "CFO" : (i==3) ? "VP" : (i==4) ? "MGR": "EMP";
+        string val = (arr[i]==0) ? "CEO" : (arr[i]==1)? "CTO" : (arr[i]==2) ? "CFO" : (arr[i]==3) ? "VP" : (arr[i]==4) ? "MGR": "EMP";
         cout << val << endl;
     }
     
