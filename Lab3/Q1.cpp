@@ -27,7 +27,14 @@ class LinkedList{
 
     public:
         LinkedList():head(nullptr){}
-
+        ~LinkedList() { 
+        Node* temp = head;
+        while (temp) {
+            Node* next = temp->next;
+            delete temp;
+            temp = next;
+            }
+        }
         void insertEnd(int val) {
             Node* newNode = new Node(val);
             if (!head) {
