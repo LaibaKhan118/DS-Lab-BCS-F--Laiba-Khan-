@@ -1,7 +1,3 @@
-/*Implement the Selection Sort algorithm. The program should take an array of integers from
-the user, find the smallest element, and exchange it with the element at the first position.
-This process should continue until the array is completely sorted. Display the sorted array
-to the user.*/
 #include <iostream>
 using namespace std;
 
