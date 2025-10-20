@@ -87,7 +87,7 @@ string toPostFix(const string& infix) {
             if (!s.isEmpty() && s.peek()=='(') { s.pop(); }
         }
         else {
-            while(!s.isEmpty() && s.peek() != '(' && (precedence(c) < precedence(s.peek()) || (precedence(c) < precedence(s.peek()) && c=='^'))) {
+            while(!s.isEmpty() && s.peek() != '(' && (precedence(c) < precedence(s.peek()) || (precedence(c) == precedence(s.peek()) && c=='^'))) {
                 char op = s.peek();
                 s.pop();
                 postfix += op;
