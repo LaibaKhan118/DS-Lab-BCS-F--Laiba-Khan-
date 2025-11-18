@@ -1,97 +1,112 @@
-#include<iostream>
-#include<vector>
-
+#include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
-int parent(int i) { return (i - 1) / 2; } // Parent index
-int left(int i) { return (2 * i) + 1; } // Left child index
-int right(int i) { return (2 * i) + 2; } // Right child index
+int parent(int i) { return (i-1)/2; }
+int left(int i) { return (2*i)+1; }
+int right(int i) { return (2*i)+2; }
 
-class MaxHeap {
+class MaxHeap
+{
 private:
     vector<int> heap;
-    void heapify_up(int idx) {
-        while(idx != 0 && (heap[idx] > heap[parent(idx)])) {
-            swap(heap[idx], heap[parent(idx)]);
-            idx = parent(idx);
+    void heapifyUp(int i)
+    {
+        while (i>0 && heap[(i-1)/2]<heap[i])
+        {
+            swap(heap[i], heap[(i-1)/2]);
+            i=(i-1)/2;
         }
     }
-    void heapify_down(int idx) {
-        int largest = idx;
-        int l = left(idx);
-        int r = right(idx);
+    void heapifyDown(int i)
+    {
+        int largest = i;
+        int leftChild = left(i);
+        int rightChild = right(i);
 
-        if(l < heap.size() && heap[l] > heap[largest]) {
-            largest = l;
+        if (leftChild<heap.size() && heap[leftChild]>heap[largest])
+        {
+            largest=leftChild;
         }
-        if(r < heap.size() && heap[r] > heap[largest]) {
-            largest = r;
+        if (rightChild<heap.size() && heap[rightChild]>heap[largest])
+        {
+            largest =rightChild;
         }
 
-        if(idx != largest) {
-            swap(heap[idx], heap[largest]);
-            heapify_down(largest);
+        if (largest !=i)
+        {
+            swap(heap[i], heap[largest]);
+            heapifyDown(largest);
         }
     }
+
 public:
-    void insert(int v) {
-        if(heap.size() == 100) {
-            cout << "Heap Overflow!!!!!!" << endl;
+    MaxHeap(const vector<int> &values)
+    {
+        heap = values;
+        for (int i = heap.size()/2-1; i>=0; --i)
+        {
+            heapifyDown(i);
         }
-        heap.push_back(v);
-        heapify_up(heap.size()-1);
     }
-    int getDelMax() {
-        if (heap.empty()) return -1;
-        int max = heap[0];
+    void update_key(int i, int new_val)
+    {
+        if(i<0 || i>=heap.size())
+        {
+            cout<<"Invalid index for update."<<endl;
+            return;
+        }
+        int old_val= heap[i];
+        heap[i] =new_val;
+        if(new_val>old_val)
+        {
+            heapifyUp(i);
+        }
+        else
+        {
+            heapifyDown(i);
+        }
+    }
+    void deleteElement()
+    {
+        if(heap.empty())
+        {
+            cout<<"Heap is empty, cannot delete." << endl;
+            return;
+        }
+        if (heap.size()== 1)
+        {
+            heap.pop_back();
+            return;
+        }
         heap[0] = heap.back();
         heap.pop_back();
-        heapify_down(0);
-        return max;
+        heapifyDown(0);
     }
-    // void del(int x) {
-    //     int i;
-    //     for (i = 0; i < heap.size(); i++)
-    //     {
-    //         if(heap[i] == x) {
-    //             break;
-    //         }
-    //     }
-    //     int idx = i;
-    //     heapify_down(idx);
-    // }
-    void update_key(int i, int new_val){
-        heap[i] = new_val;
-    }
-     void display() {
-        for (int i = 0; i < heap.size(); ++i) {
-            cout << heap[i] << " ";
+    void printHeap() const
+    {
+        for (int val:heap)
+        {
+            cout<<val<<" ";
         }
-        cout << endl;
+        cout<<endl;
     }
 };
 
-int main() {
-    MaxHeap maxHeap;
+int main()
+{
+    vector<int> initial_values ={8, 7, 6, 5, 4};
+    MaxHeap myHeap(initial_values);
+    cout<<"Initial Max Heap: ";
+    myHeap.printHeap();
 
-    maxHeap.insert(6);
-    maxHeap.insert(4);
-    maxHeap.insert(9);
-    maxHeap.insert(3);
-    maxHeap.insert(2);
-    
-    maxHeap.display();
-    cout << "\nExtracted Max: " << maxHeap.getDelMax() << endl;
-    maxHeap.display();
-    cout << endl;
-    // cout << "Deleting 3: " << endl;
-    // maxHeap.del(3);
-    // maxHeap.display();
-    // cout << endl;
-    cout << "Updating element at 3rd index to 10" << endl;
-    maxHeap.update_key(2, 10);
-    cout << endl;
-    maxHeap.display();
-    
+    myHeap.update_key(3, 10);
+    cout<<"Heap after updating key at index 3 to 10: ";
+    myHeap.printHeap();
+
+    myHeap.deleteElement();
+    cout<<"Heap after deleting root: ";
+    myHeap.printHeap();
     return 0;
 }
