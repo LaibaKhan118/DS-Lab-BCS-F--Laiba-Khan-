@@ -32,3 +32,10 @@ BF(40)= 1 – 1 = 0
 BF(20) = 2 – 2 =0
 
 The Tree is still balanced.
+
+If we MUST use Left rotation. The after applying left rotation on 10:
+     20
+    /  \
+  15    40
+ /      / \
+10     30  50
