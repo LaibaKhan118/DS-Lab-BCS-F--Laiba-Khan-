@@ -34,7 +34,7 @@ public:
 
         if (v < root->data)
             root->left = insert(root->left, v);
-        else
+        else if (v > root->data) 
             root->right = insert(root->right, v);
         return root;
     }
