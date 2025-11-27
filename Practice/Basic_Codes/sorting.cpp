@@ -57,7 +57,7 @@ void insertionSort(int *arr, int size)
     }
 }
 //------ Recursively
-void rInsrtionSort(int *arr, int size)
+void rInsertionSort(int *arr, int size)
 {
     if (size <= 1)
         return;
@@ -117,7 +117,7 @@ void combSort(int *arr, int size)
     int gap = size;
     float shrink = 1.3;
     bool swapped = true;
-    while (swapped)
+    while (swapped || gap != 1)
     {
         gap = ((gap / shrink) < 1.0) ? 1 : (gap / shrink);
         swapped = false;
@@ -254,3 +254,4 @@ void radixSortRecursive(int arr[], int n, int exp, int maxVal)
     radixSortRecursive(arr, n, exp * 10, maxVal);
 }
 //******* For vectors, replace int* arr to vector<int>& arr, and size could calculated with arr.size() instead of bein passed as parameter
+
