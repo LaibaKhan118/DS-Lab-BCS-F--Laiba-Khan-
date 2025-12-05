@@ -35,7 +35,7 @@ void rabinKarp(string text, string pattern) {
         }
 
         if (i < n - m) {
-            t = (d * (t - text[i] * h) + text[i + 1]) % q;
+            t = (d * (t - text[i] * h) + text[i + m]) % q;
             if (t < 0) t += q;
         }
     }
