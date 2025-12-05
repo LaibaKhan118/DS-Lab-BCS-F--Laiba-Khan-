@@ -226,6 +226,23 @@ public:
         table[(index + i) % size] = key;
         count++;
     }
+    void deleteKey(int key) {
+        int index = hash(key);
+        int i = 0;
+    
+        while (table[(index + i) % size] != -1) {
+            int pos = (index + i) % size;
+    
+            if (table[pos] == key) {
+                table[pos] = -2; // mark as deleted
+                count--;
+                return;
+            }
+            i++;
+        }
+    
+        cout << "Key not found!\n";
+    }
 
     void display() {
         for (int i = 0; i < size; i++)
@@ -237,4 +254,5 @@ int main()
 {
     
     return 0;
+
 }
